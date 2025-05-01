@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 
 project(LocalSend VERSION 0.1 LANGUAGES CXX)
 
+#=========================== INCLUSION OF Qt ============================#
+
+set (CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -12,12 +15,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+#=========================== INCLUSION OF Project Files ============================#
+
+set(FORMS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/forms")
+set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+
+include_directories(${FORMS_DIR})
+include_directories(${INCLUDE_DIR})
+include_directories(${SOURCE_DIR})
+
+file(GLOB_RECURSE PROJECT_SOURCES
+    "${FORMS_DIR}/*.ui"
+    "${FORMS_DIR}/*.qrc"
+    "${INCLUDE_DIR}/*.h"
+    "${SOURCE_DIR}/*.cpp"
 )
+
+#=========================== SETUP EXECTUABLE ============================#
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(LocalSend
