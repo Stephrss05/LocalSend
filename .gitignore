@@ -80,3 +80,15 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+
+# Ignore Visual Studio temporary files
+.vs/
+*.user
+*.suo
+*.VC.db
+*.ipch
+*.db
+*.opendb
+*.log
+*.cache
+*.idx
