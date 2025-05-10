@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtGui>
+#include <QStackedWidget>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +19,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+public slots:
+	void page1Widget();
+	void page2Widget();
 };
 
 #endif // MAINWINDOW_H
